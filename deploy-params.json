@@ -1,0 +1,37 @@
+{
+  "contract": "AgentPass",
+  "source": "contracts/AgentPass.sol",
+  "solidity": "0.8.20",
+  "optimizer": {
+    "enabled": true,
+    "runs": 200
+  },
+  "chain": "BSC mainnet",
+  "chainId": 56,
+  "from": "0x5D2242A34a38f891aEFC1D36e0aC0662462baA4A",
+  "fromAgentId": "rizal0909.ai",
+  "nonce_at_check": 391,
+  "block_at_check": 134454178,
+  "constructorArgs": [
+    "0x60b9262456de011f7d15a54cdd8c48baaa8b022f"
+  ],
+  "creationBytecodeSha256": "61c8710c7ea5eff2d925fb1f6048f6ac8edf8fd01c8a56ad399b9733f47e3842",
+  "creationBytecodeBytes": 5470,
+  "deployDataSha256": "19dd45e72d1e90d806250bc020d790dc6b2e139e4237a9aec27fb1d4af505d2e",
+  "deployDataBytes": 5502,
+  "deployDataFile": "deploy-data.txt",
+  "gasEstimateMainnet": 1195662,
+  "gasEstimateHardhatLocal": 1188137,
+  "recommendedGasLimit": 1250000,
+  "gasPriceLiveWei": 50000000,
+  "gasPriceLiveGwei": 0.05,
+  "deployCostAtLiveGasBNB": 5.97831e-05,
+  "balanceAtCheckBNB": 0.00015964237099174,
+  "balanceAfterDeployBNB": 9.98593e-05,
+  "predictedContractAddressNonce391": "0xF5379f24174C70a4fFE4987b0607394064d918eC",
+  "valueWei": 0,
+  "simulation": "eth_call with creation data returned runtime bytecode (constructor did not revert); eth_estimateGas 1195662",
+  "bawDeploySupport": false,
+  "bawPreviewError": "SERVICE_ERROR: to is required for EVM contract-call",
+  "note": "Nonce must be re-checked at broadcast time; predicted address valid only for nonce 391. baw cannot preview/execute contract creation."
+}

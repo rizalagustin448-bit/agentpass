@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AgentPass — Paspor Kredensial Agent ID</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }
+  section { border: 1px solid #ddd; border-radius: 10px; padding: 1rem; margin: 1rem 0; }
+  button { padding: .5rem 1rem; cursor: pointer; }
+  input { padding: .5rem; width: 100%; box-sizing: border-box; margin: .25rem 0 .5rem; }
+  .badge { display: inline-block; border: 1px solid #888; border-radius: 999px; padding: .1rem .6rem; margin: .15rem; }
+  .badge.on { background: #1a7f37; color: #fff; border-color: #1a7f37; }
+  .warn { background: #fff8e1; border: 1px solid #e6c200; padding: .5rem; border-radius: 6px; }
+  .ok { color: #1a7f37; } .bad { color: #b42318; }
+  small { color: #555; }
+  #avatar { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+</head>
+<body>
+<h1>AgentPass</h1>
+<p>Paspor kredensial on-chain untuk pemegang Agent ID (.ai). Badge = reputasi, bukan uang.
+Tanpa fee, tanpa custody, tanpa owner. Semua transaksi dikonfirmasi di wallet kamu.</p>
+
+<section>
+  <h2>1. Wallet</h2>
+  <button id="connectBtn">Connect Wallet</button>
+  <p id="walletStatus">Belum terhubung.</p>
+  <p id="agentIdStatus"></p>
+  <div id="nameBox" hidden>
+    <label>Nama .ai kamu (tanpa ".ai", contoh: <code>agent</code>) — diverifikasi on-chain:
+      <input id="aiNameInput" placeholder="namakamu" maxlength="64">
+    </label>
+    <button id="verifyNameBtn">Verifikasi nama .ai</button>
+    <p id="nameStatus"></p>
+    <img id="avatar" hidden alt="Avatar Agent ID">
+  </div>
+</section>
+
+<section>
+  <h2>2. Profil</h2>
+  <div id="profile">Hubungkan wallet dulu.</div>
+  <p>Badge:
+    <span class="badge" data-badge="1">Daily Proof</span>
+    <span class="badge" data-badge="2">First Mark</span>
+    <span class="badge" data-badge="3">Tipper</span>
+    <span class="badge" data-badge="4">Builder</span>
+    <span class="badge" data-badge="5">Early Agent</span>
+  </p>
+</section>
+
+<section>
+  <h2>3. Check-in harian</h2>
+  <p>1x per hari UTC. Streak reset kalau bolong sehari.</p>
+  <button id="checkInBtn" disabled>Check-in hari ini</button>
+  <p id="checkInStatus"></p>
+</section>
+
+<section>
+  <h2>4. Tinggalkan Mark</h2>
+  <input id="markInput" maxlength="280" placeholder="Pesan publik (maks 280 karakter)">
+  <button id="markBtn" disabled>Kirim Mark</button>
+  <p id="markStatus"></p>
+  <h3>Mark terakhir</h3>
+  <ul id="markList"><li>—</li></ul>
+</section>
+
+<section>
+  <h2>5. Tip BNB</h2>
+  <p>Seluruh jumlah diteruskan langsung ke penerima — tanpa fee, tanpa custody.</p>
+  <input id="tipTo" placeholder="Alamat penerima (harus pegang Agent ID)">
+  <input id="tipAmount" placeholder="Jumlah BNB, contoh: 0.001" inputmode="decimal">
+  <button id="tipBtn" disabled>Kirim Tip</button>
+  <p id="tipStatus"></p>
+</section>
+
+<section>
+  <h2>6. Klaim Builder</h2>
+  <p>Buktikan kamu deploy kontrak BSC yang <b>source-nya terverifikasi di BscScan</b>.
+  Frontend memeriksa BscScan <i>sebelum</i> tombol klaim aktif.</p>
+  <input id="builderAddr" placeholder="Alamat kontrak yang kamu deploy (0x...)">
+  <button id="builderCheckBtn" disabled>Cek verifikasi BscScan</button>
+  <p id="builderCheckStatus"></p>
+  <button id="builderClaimBtn" disabled>Klaim Badge Builder</button>
+  <p id="builderStatus"></p>
+</section>
+
+<section>
+  <h2>7. Klaim Early Agent</h2>
+  <p>Hanya untuk 100 pemegang badge pertama.</p>
+  <button id="earlyBtn" disabled>Klaim Early Agent</button>
+  <p id="earlyStatus"></p>
+</section>
+
+<section>
+  <h2>8. Leaderboard Streak</h2>
+  <p><small>Dari event CheckIn on-chain sejak blok deploy.</small></p>
+  <ol id="leaderboard"><li>Memuat…</li></ol>
+</section>
+
+<script src="./config.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>
