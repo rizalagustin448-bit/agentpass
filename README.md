@@ -75,15 +75,16 @@ kecil: check-in ulang ~0,0000026 BNB @0,05 gwei; check-in pertama ~0,0000093 BNB
 - **Deployer:** wallet personal Selena `0x13C7F560367AfC703d9885c5597a91A27919ac24`
 - **Waktu deploy:** 19 Nov 2026 ~14:28 WIB
 - **Biaya deploy:** 0,0000654384 BNB — sisa wallet personal ~0,0000155616 BNB
-- **Tx hash deploy:** `TX_HASH_MENYUSUL` (belum terverifikasi — diisi setelah dicek di BscScan)
-- **Blok deploy:** `DEPLOY_BLOCK_MENYUSUL` (belum terverifikasi — diisi setelah dicek di BscScan)
+- **Tx hash deploy:** [`0x073d6368d9429499ca45d6e2934c49e623764024e78a47c0ec1ad7ab2475b49b`](https://bscscan.com/tx/0x073d6368d9429499ca45d6e2934c49e623764024e78a47c0ec1ad7ab2475b49b) (terverifikasi via receipt, 19 Nov 2026)
+- **Blok deploy:** `134463283` (txIndex 40, 14:28:05 WIB) — gas used 1.162.366 @ 0,056297612 gwei, status sukses
 - **BscScan:** https://bscscan.com/address/0xa6Ef7BEb5892b9d07978a554F4ee982439531325
+- **Verifikasi source:** ✅ **Sourcify exact match** (creation + runtime), 19 Nov 2026 14:28:18 WIB — https://sourcify.dev/server/v2/contract/56/0xa6Ef7BEb5892b9d07978a554F4ee982439531325 (compiler 0.8.20, evmVersion shanghai, optimizer 200 runs; source identik byte-per-byte dengan repo). BscScan UI belum bisa dicek dari VM ini (situs 403, API v1 pensiun + v2 butuh API key) — dengan Sourcify exact match, verifikasi via UI BscScan mestinya langsung lolos.
 
 Langkah sesudah deploy (belum semua selesai):
 
 1. ✅ Deploy dari wallet personal (nonce 122, gas ≤0,06 gwei).
-2. ⏳ Verifikasi source di BscScan (flatten / multi-file, lisensi MIT, optimizer runs 200).
-3. ⏳ Isi `frontend/config.js`: `AGENTPASS_ADDRESS` + `DEPLOY_BLOCK` (setelah tx hash/blok terverifikasi).
+2. ✅ Verifikasi source — Sourcify exact match (lihat di atas); BscScan UI menyusul bila ada akses browser/API key.
+3. ✅ Isi `frontend/config.js`: `AGENTPASS_ADDRESS` + `DEPLOY_BLOCK` = 134463283.
 4. ⏳ Host `frontend/` sebagai situs statis (lihat "Situs live" di bawah) — tanpa build step.
 5. ⏳ Uji end-to-end di mainnet: connect wallet → check-in → mark → tip kecil → klaim badge.
 
